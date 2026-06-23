@@ -1,0 +1,66 @@
+---
+const cards = [
+  { label: 'The Studio', href: '/the-studio/', sub: 'Meet the hands behind the frames' },
+  { label: 'Experience', href: '/experience/', sub: "Discover what it's like to work with us" },
+  { label: 'Contact', href: '/contact/', sub: 'If our work resonates with you' },
+];
+---
+
+<section class="navcards section">
+  <div class="container">
+    <div class="navcards__grid">
+      {cards.map((card) => (
+        <a class="navcard reveal" href={card.href}>
+          <span class="navcard__label">{card.label}</span>
+          <span class="navcard__sub">{card.sub}</span>
+          <span class="navcard__arrow" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .navcards__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line-soft);
+  }
+  .navcard {
+    display: grid;
+    gap: 0.9rem;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 2.5rem);
+    border-bottom: 1px solid var(--line-soft);
+    border-right: 1px solid var(--line-soft);
+    text-align: center;
+    transition: background 0.5s var(--ease);
+  }
+  .navcard:first-child { border-left: 1px solid var(--line-soft); }
+  .navcard__label {
+    font-family: var(--font-serif);
+    font-size: var(--fs-h2);
+    font-weight: 340;
+    transition: font-style 0.3s var(--ease);
+  }
+  .navcard__sub {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--stone);
+  }
+  .navcard__arrow {
+    font-size: 1.1rem;
+    color: var(--accent-deep);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .navcard:hover { background: var(--bone-deep); }
+  .navcard:hover .navcard__label { font-style: italic; }
+  .navcard:hover .navcard__arrow { opacity: 1; transform: none; }
+
+  @media (max-width: 760px) {
+    .navcards__grid { grid-template-columns: 1fr; }
+    .navcard { border-left: 1px solid var(--line-soft); }
+  }
+</style>

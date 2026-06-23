@@ -1,0 +1,43 @@
+:root {
+  /* ---- Palette: bone & ink, photos carry the colour ---- */
+  --bone:        #f4f1ea;   /* page background */
+  --bone-deep:   #ece7dc;   /* alt sections / image placeholder */
+  --bone-warm:   #e7e0d3;
+  --ink:         #1c1a17;   /* near-black text */
+  --ink-soft:    #4b463d;   /* secondary text */
+  --stone:       #9a907f;   /* muted labels */
+  --line:        rgba(28, 26, 23, 0.16);
+  --line-soft:   rgba(28, 26, 23, 0.08);
+  --accent:      #9a6a4b;   /* muted terracotta / clay — used sparingly */
+  --accent-deep: #855537;
+
+  /* ---- Type ---- */
+  --font-serif: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans:  "Jost Variable", "Jost", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* fluid display sizes */
+  --fs-display: clamp(2.9rem, 8.2vw, 7.5rem);
+  --fs-h1:      clamp(2rem, 4.4vw, 3.4rem);
+  --fs-h2:      clamp(1.6rem, 3vw, 2.5rem);
+  --fs-h3:      clamp(1.3rem, 2.1vw, 1.9rem);
+  --fs-lead:    clamp(1.05rem, 1.4vw, 1.3rem);
+  --fs-body:    1.02rem;
+  --fs-small:   0.86rem;
+  --fs-eyebrow: 0.72rem;
+
+  --tracking-wide:  0.18em;
+  --tracking-wider: 0.28em;
+
+  /* ---- Spacing & layout ---- */
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --maxw: 1500px;
+  --maxw-text: 60ch;
+  --section-y: clamp(4.5rem, 11vw, 11rem);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.7s;
+
+  --header-h: 5.5rem;
+}

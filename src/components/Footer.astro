@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+import { nav, site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a href="/" class="site-footer__mark" aria-label={`${site.name} — home`}>
+      <Image src={logo} alt={site.name} widths={[260, 420]} sizes="220px" loading="lazy" />
+    </a>
+
+    <p class="eyebrow site-footer__eyebrow">Follow along on Instagram</p>
+    <a class="site-footer__ig" href={site.instagram.url} target="_blank" rel="noopener">
+      {site.instagram.handle}
+    </a>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <a href="/">Home</a>
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="site-footer__meta">
+      <span>© {year} {site.name}</span>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+
+    <p class="site-footer__credit">
+      Crafted by <a href="https://shutterselect.com" target="_blank" rel="noopener">Shutter&nbsp;Select</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line-soft);
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+    text-align: center;
+  }
+  .site-footer__inner {
+    display: grid;
+    justify-items: center;
+    gap: 1.5rem;
+  }
+  .site-footer__mark :global(img) {
+    width: clamp(150px, 26vw, 210px);
+    height: auto;
+    mix-blend-mode: multiply;
+  }
+  .site-footer__eyebrow { margin-top: 0.5rem; }
+  .site-footer__ig {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-style: italic;
+    transition: color 0.35s var(--ease);
+  }
+  .site-footer__ig:hover { color: var(--accent-deep); }
+
+  .site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1.2rem, 3vw, 2.4rem);
+    margin-top: 0.5rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: 0.72rem;
+  }
+  .site-footer__nav a { color: var(--ink-soft); transition: color 0.3s var(--ease); }
+  .site-footer__nav a:hover { color: var(--ink); }
+
+  .site-footer__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 1.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    color: var(--stone);
+    margin-top: 0.75rem;
+  }
+  .site-footer__meta a:hover { color: var(--ink); }
+
+  .site-footer__credit {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  .site-footer__credit a { color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+  .site-footer__credit a:hover { color: var(--accent-deep); }
+</style>

@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Frame from '../components/Frame.astro';
+import { experienceShots } from '../data/photos';
+
+const services = [
+  {
+    k: 'Weddings',
+    d: 'Unobtrusive, full-day documentary coverage of every ceremony and celebration — from the quiet of the morning to the last dance of the night.',
+    incl: ['Two lead photographers', 'Full-day coverage', 'Hand-edited online gallery', 'Sneak peek within a week'],
+    shot: experienceShots[0],
+  },
+  {
+    k: 'Pre-Weddings',
+    d: 'An unhurried portrait session, somewhere that means something to you — a way to be in front of the camera together before the big days arrive.',
+    incl: ['Half-day session', 'One location of your choice', 'Wardrobe & moodboard guidance'],
+    shot: experienceShots[1],
+  },
+  {
+    k: 'Films',
+    d: 'Cinematic, conversational wedding films — the laughter, the vows and the music, edited into a story you can watch and feel for years.',
+    incl: ['Dedicated films team', 'Highlight film', 'Optional full-length feature'],
+    shot: experienceShots[2],
+  },
+  {
+    k: 'Destination',
+    d: 'Wherever your celebration unfolds — a palace in Rajasthan, a beach in Goa, or a city an ocean away — we travel to document it.',
+    incl: ['Travel across India & worldwide', 'Logistics handled with you', 'Local recce where needed'],
+    shot: experienceShots[3],
+  },
+];
+
+const details = [
+  { t: 'Sneak peek', d: 'A first set of images within one week of your wedding.' },
+  { t: 'Photographs', d: 'Your full, hand-edited gallery in around four weeks.' },
+  { t: 'Films', d: 'Your wedding film in around eight weeks.' },
+  { t: 'Booking', d: 'We take a limited number of weddings each year — most couples reach out three to four months ahead.' },
+];
+
+const steps = [
+  { n: '01', t: 'Understanding your story', d: 'Before a single frame, we listen. Your families, your rituals, the small things that make the two of you, you.' },
+  { n: '02', t: 'Planning the perfect shots', d: 'We map your days light by light and moment by moment — so nothing that matters is left to chance.' },
+  { n: '03', t: 'The art of storytelling', d: 'On the day we stay close but unseen, documenting the real and the unrehearsed as it happens.' },
+  { n: '04', t: 'Reliving it, forever', d: 'We hand-craft your photographs and films into a keepsake you will return to for a lifetime.' },
+];
+---
+
+<BaseLayout
+  title="Experience"
+  description="Weddings, pre-weddings, films and destination coverage by Stories Beyond Frames — what's included, timelines and how to book."
+>
+  <PageHeader
+    eyebrow="The Experience"
+    title="What it's like to be <em>photographed</em> by us."
+    intro="Considered, calm and entirely yours. Here is how we work, what we cover, and what you can expect once the day is done."
+  />
+
+  <section class="section approach">
+    <div class="container">
+      <p class="eyebrow approach__eyebrow reveal">How we work</p>
+      <ol class="approach__list">
+        {steps.map((s) => (
+          <li class="approach__step reveal">
+            <span class="approach__n">{s.n}</span>
+            <div>
+              <h3 class="approach__t">{s.t}</h3>
+              <p class="approach__d">{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section services">
+    <div class="container">
+      {services.map((s, i) => (
+        <article class={`service ${i % 2 === 1 ? 'service--rev' : ''} reveal`}>
+          <div class="service__img">
+            <Frame image={s.shot.image} alt={`${s.k} — ${s.shot.alt}`} ratio="3 / 2"
+              sizes="(max-width: 860px) 90vw, 48vw" />
+          </div>
+          <div class="service__text">
+            <h2 class="service__title">{s.k}</h2>
+            <p class="service__desc">{s.d}</p>
+            <ul class="service__incl reset">
+              {s.incl.map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section details">
+    <div class="container">
+      <p class="eyebrow details__eyebrow reveal">The details</p>
+      <div class="details__grid">
+        {details.map((d) => (
+          <div class="details__item reveal">
+            <h3 class="details__t">{d.t}</h3>
+            <p class="details__d">{d.d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="details__invest reveal">
+        Every celebration is different, so every collection is tailored. Share
+        your dates and plans and we'll send our collections and availability.
+      </p>
+    </div>
+  </section>
+
+  <section class="section cta-band">
+    <div class="container cta-band__inner reveal">
+      <p class="cta-band__line">Let's plan your days.</p>
+      <a href="/contact/" class="cta">Check availability</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .approach__eyebrow { text-align: center; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .approach__list {
+    list-style: none;
+    padding: 0;
+    max-width: 60rem;
+    margin-inline: auto;
+    display: grid;
+    gap: 0;
+  }
+  .approach__step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding-block: clamp(1.8rem, 4vw, 2.8rem);
+    border-top: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .approach__step:last-child { border-bottom: 1px solid var(--line-soft); }
+  .approach__n {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-deep);
+    padding-top: 0.4rem;
+  }
+  .approach__t { font-size: var(--fs-h3); font-weight: 350; margin-bottom: 0.6rem; }
+  .approach__d { color: var(--ink-soft); max-width: 44ch; }
+
+  .services {
+    border-top: 1px solid var(--line-soft);
+  }
+  .service {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+  }
+  .service--rev .service__img { order: 2; }
+  .service__title { font-size: var(--fs-h1); font-weight: 330; margin-bottom: 1.1rem; }
+  .service__desc { color: var(--ink-soft); max-width: 42ch; margin-bottom: 1.6rem; }
+  .service__incl {
+    display: grid;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+  .service__incl li {
+    padding-left: 1.4rem;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  .service__incl li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.5em;
+    width: 0.5rem; height: 1px;
+    background: var(--accent-deep);
+  }
+
+  .details__eyebrow { text-align: center; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .details__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    border-top: 1px solid var(--line-soft);
+    padding-top: clamp(2rem, 4vw, 3rem);
+  }
+  .details__t { font-size: 1.2rem; font-weight: 360; margin-bottom: 0.7rem; }
+  .details__d { color: var(--ink-soft); font-size: 0.95rem; }
+  .details__invest {
+    text-align: center;
+    max-width: 46ch;
+    margin: clamp(3rem, 6vw, 4.5rem) auto 0;
+    font-size: var(--fs-h3);
+    font-weight: 340;
+    font-style: italic;
+  }
+
+  .cta-band__inner {
+    text-align: center;
+    display: grid;
+    gap: 1.6rem;
+    justify-items: center;
+    border-top: 1px solid var(--line-soft);
+    padding-top: clamp(3rem, 8vw, 6rem);
+  }
+  .cta-band__line { font-size: var(--fs-h1); font-weight: 330; }
+
+  @media (max-width: 860px) {
+    .service { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .service--rev .service__img { order: 0; }
+    .service__desc, .service__incl { margin-inline: auto; }
+    .service__incl li { text-align: left; }
+  }
+  @media (max-width: 760px) {
+    .details__grid { grid-template-columns: 1fr 1fr; }
+    .approach__step { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+  @media (max-width: 440px) {
+    .details__grid { grid-template-columns: 1fr; }
+  }
+</style>

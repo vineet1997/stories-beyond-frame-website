@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Frame from '../components/Frame.astro';
+import { studioHero } from '../data/photos';
+import founderImg from '../assets/founder.webp';
+---
+
+<BaseLayout
+  title="The Studio"
+  description="Stories Beyond Frames is a candid wedding photography & films studio in India — our philosophy and the founder behind the work."
+>
+  <PageHeader
+    eyebrow="The Studio"
+    title="Every wedding is a story waiting to be <em>told</em>."
+    intro="Stories Beyond Frames is a wedding photography and films studio, devoted to documenting the love, the emotion and the unspoken bonds that make each celebration unlike any other."
+  />
+
+  <section class="section studio-feature">
+    <div class="container studio-feature__grid">
+      <div class="studio-feature__img reveal">
+        <Frame image={studioHero.image} alt={studioHero.alt} ratio="3 / 4"
+          sizes="(max-width: 860px) 90vw, 44vw" />
+      </div>
+      <div class="studio-feature__text reveal">
+        <p class="eyebrow">Our philosophy</p>
+        <p class="studio-feature__lead">
+          We believe the truest photographs are the ones nobody posed for.
+        </p>
+        <p>
+          A wedding is not a list of shots to tick off — it is a current of
+          emotion, tradition, chaos and joy. We move through it gently, capturing
+          feelings over moments: the joy and the tears, the laughter, and the
+          quiet glances that say more than words.
+        </p>
+        <p>
+          Every celebration is different, so we begin by listening — shaping the
+          coverage around your families, your rituals and the two of you. The
+          result is timeless and deeply personal: images that still feel like the
+          day, long after the day has passed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section founder">
+    <div class="container">
+      <blockquote class="founder__quote reveal">
+        “I learned to tell stories in the edit room — that the moments you
+        <em>feel</em> are the ones worth keeping.”
+      </blockquote>
+
+      <div class="founder__grid">
+        <div class="founder__text reveal">
+          <p class="eyebrow">Our founder</p>
+          <h2 class="founder__name">Dhiraj Wadhwa</h2>
+          <p class="founder__role">Film Editor &amp; Creative Director</p>
+          <div class="founder__bio">
+            <p>
+              Stories Beyond Frames was founded by Dhiraj Wadhwa, a film editor and
+              creative director who learned his craft on the cutting-room floor of
+              Indian cinema.
+            </p>
+            <p>
+              Across more than eight years he has edited feature films, web series,
+              short films and commercials — including Bollywood features such as
+              <em>Dream Girl 2</em> and <em>Kuch Khattaa Ho Jaay</em> — and brings
+              that same cinematic eye to every wedding the studio documents.
+            </p>
+            <p>
+              Trained in film editing at Ronkel Media and a computer-science
+              graduate, he pairs real technical finesse — drone cinematography, 4K
+              colour — with a storyteller's instinct for the moments that matter.
+            </p>
+          </div>
+        </div>
+
+        <figure class="founder__frame reveal">
+          <div class="founder__mat">
+            <Frame image={founderImg} alt="Dhiraj Wadhwa, founder of Stories Beyond Frames"
+              ratio="4 / 5" sizes="(max-width: 860px) 56vw, 24vw" widths={[400, 600, 768]} />
+          </div>
+          <figcaption class="founder__cap">Founder · Stories Beyond Frames</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-band">
+    <div class="container cta-band__inner reveal">
+      <p class="cta-band__line">Tell us about your celebration.</p>
+      <a href="/contact/" class="cta">Get in touch</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .studio-feature__grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .studio-feature__img { max-width: 34rem; }
+  .studio-feature__text { display: grid; gap: 1.3rem; max-width: 40rem; }
+  .studio-feature__text .eyebrow { margin-bottom: 0.4rem; }
+  .studio-feature__lead {
+    font-size: var(--fs-h2);
+    font-weight: 340;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  .studio-feature__text p:not(.studio-feature__lead):not(.eyebrow) { color: var(--ink-soft); }
+
+  .founder__quote {
+    max-width: 22ch;
+    margin: 0 auto clamp(3rem, 7vw, 5.5rem);
+    text-align: center;
+    font-size: var(--fs-h1);
+    font-weight: 330;
+    font-style: italic;
+    line-height: 1.18;
+    text-wrap: balance;
+  }
+  .founder__quote em { font-style: italic; }
+
+  .founder__grid {
+    display: grid;
+    grid-template-columns: 1fr 0.78fr;
+    gap: clamp(2.5rem, 7vw, 6rem);
+    align-items: center;
+  }
+  .founder__text { display: grid; gap: 0.5rem; max-width: 42rem; }
+  .founder__text .eyebrow { margin-bottom: 0.8rem; }
+  .founder__name { font-size: var(--fs-h1); font-weight: 330; }
+  .founder__role {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: 0.72rem;
+    color: var(--stone);
+    margin-bottom: 1.5rem;
+  }
+  .founder__bio { display: grid; gap: 1.2rem; color: var(--ink-soft); }
+  .founder__bio em { font-style: italic; color: var(--ink); }
+
+  /* Matted, framed print */
+  .founder__frame {
+    margin: 0;
+    justify-self: center;
+    width: 100%;
+    max-width: 25rem;
+  }
+  .founder__mat {
+    display: block;
+    background: #faf7f0;
+    padding: clamp(0.9rem, 2.3vw, 1.8rem);
+    border: 1px solid var(--line);
+    box-shadow: 0 34px 64px -46px rgba(28, 26, 23, 0.55);
+  }
+  /* inner keyline hugging the photo */
+  .founder__mat :global(.frame) { border: 1px solid var(--line-soft); }
+  .founder__cap {
+    margin-top: 1.1rem;
+    text-align: center;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: 0.66rem;
+    color: var(--stone);
+  }
+
+  .cta-band__inner {
+    text-align: center;
+    display: grid;
+    gap: 1.6rem;
+    justify-items: center;
+    border-top: 1px solid var(--line-soft);
+    padding-top: clamp(3rem, 8vw, 6rem);
+  }
+  .cta-band__line { font-size: var(--fs-h1); font-weight: 330; }
+
+  @media (max-width: 860px) {
+    .studio-feature__grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .studio-feature__text { justify-items: center; }
+    .founder__grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .founder__text { justify-items: center; }
+    .founder__frame { order: -1; max-width: 19rem; }
+  }
+</style>
