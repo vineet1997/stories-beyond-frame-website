@@ -7,7 +7,7 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
-import { inject } from '@vercel/analytics';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -25,8 +25,6 @@ const {
 const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogUrl = new URL(ogImage, site.url).href;
-
-inject();
 ---
 
 <!doctype html>
@@ -48,11 +46,18 @@ inject();
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:secure_url" content={ogUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — ${site.tagline}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogUrl} />
+    <meta name="twitter:image:alt" content={`${site.name} — ${site.tagline}`} />
 
     <ClientRouter />
   </head>
@@ -183,5 +188,7 @@ inject();
       boot();
       document.addEventListener('astro:page-load', () => { initReveals(); initImageFade(); });
     </script>
+
+    <Analytics />
   </body>
 </html>

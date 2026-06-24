@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://storiesbeyondframes.com',
+  site: 'https://stories-beyond-frame.shutterselect.com',
   integrations: [sitemap()],
   build: {
     inlineStylesheets: 'auto',

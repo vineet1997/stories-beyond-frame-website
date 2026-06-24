@@ -7,7 +7,7 @@ export const site = {
   shortName: 'SBF',
   tagline: 'Where beautiful stories begin',
   description:
-    'Stories Beyond Frames is a candid, documentary-style wedding photography & films studio based in India — capturing emotions, traditions, and the magic of your love story.',
+    'Candid wedding photography & films, documenting the emotions, traditions and magic of your love story. Based in India, available worldwide.',
   email: 'hello@storiesbeyondframes.com',
   instagram: { handle: '@storiesbeyondframes', url: 'https://www.instagram.com/storiesbeyondframes' },
   // Placeholder — swap with the studio's real number.
@@ -15,7 +15,7 @@ export const site = {
   // Web3Forms access key — paste a key from web3forms.com to make the
   // contact form deliver to the studio inbox. Left blank → graceful demo mode.
   web3formsKey: '',
-  url: 'https://storiesbeyondframes.com',
+  url: 'https://stories-beyond-frame.shutterselect.com',
 } as const;
 
 export const nav = [

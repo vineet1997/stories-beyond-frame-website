@@ -117,9 +117,17 @@ import { places, documentary } from '../../data/photos';
   .intro__cta { text-align: center; margin-top: clamp(3.5rem, 8vw, 7rem); }
 
   @media (max-width: 900px) {
-    .intro__row--places { grid-template-columns: 1fr; justify-items: center; text-align: center; }
-    .intro__places { justify-items: center; }
-    .intro__img-sm { margin: 0 auto; }
+    /* keep the frame + places line side by side (image needs a sized column to render) */
+    .intro__row--places {
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: clamp(0.9rem, 3.5vw, 1.8rem);
+      align-items: center;
+      text-align: left;
+    }
+    .intro__img--tall { max-width: 100%; }
+    .intro__places { justify-items: start; gap: 1.4rem; max-width: none; }
+    .intro__places-text { font-size: clamp(0.9rem, 3vw, 1.15rem); line-height: 1.55; }
+    .intro__img-sm { display: none; }
 
     /* Cascade collapses to a staggered, overlapping pair, then a centered column */
     .doc {
@@ -140,5 +148,25 @@ import { places, documentary } from '../../data/photos';
     .doc__lead { order: 5; }
     .doc__p4 { order: 6; width: 58%; }
     .doc__closing { order: 7; }
+  }
+
+  /* Phones: stack the places block so the photo can go big */
+  @media (max-width: 640px) {
+    .intro__row--places {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: clamp(1.8rem, 6vw, 2.8rem);
+      margin-bottom: clamp(3.5rem, 12vw, 7rem);
+    }
+    .intro__img--tall {
+      width: 100%;
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+    .intro__places { justify-items: center; }
+    .intro__places-text {
+      font-size: clamp(1.1rem, 5vw, 1.55rem);
+      line-height: 1.5;
+    }
   }
 </style>
